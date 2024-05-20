@@ -1,6 +1,8 @@
 import 'dart:convert';
+
 import 'package:draft_view/draft_view/plugin/base_plugin.dart';
 import 'package:flutter/material.dart';
+
 import './extensions.dart';
 
 class BaseBlock {
@@ -261,7 +263,7 @@ class BaseBlock {
 
   /// get text color
   Color textColor(context) {
-    var color = Theme.of(context).textTheme.bodyText1!.color!;
+    var color = Theme.of(context).textTheme.bodyLarge!.color!;
     var style = inlineStyles.firstWhere((element) => element[0] == "#",
         orElse: () => "");
     if (style.isNotEmpty) {
@@ -287,7 +289,7 @@ class BaseBlock {
 
   /// Render style based on the block's type and inline styles
   TextStyle renderStyle(BuildContext context) {
-    var textStyle = Theme.of(context).textTheme.bodyText1!;
+    var textStyle = Theme.of(context).textTheme.bodyLarge!;
 
     return textStyle.copyWith(
       fontWeight: fontWeight,

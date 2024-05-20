@@ -26,7 +26,7 @@ It is implemented in a plugable design so that you can create your own plugin ea
 
    ![image1](./images/1.png)
 
-2. Image and image's caption support
+2. Image and image's bodySmall support
 
    ![image2](./images/2.png)
 

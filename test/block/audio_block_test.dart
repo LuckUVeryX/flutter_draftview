@@ -1,18 +1,10 @@
 import 'package:draft_view/draft_view/block/blocks/audio_block.dart';
-import 'package:draft_view/draft_view/block/blocks/image_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'blockquote_test.dart';
-
 void main() {
   group("Audio test", () {
-    late BuildContext context;
     Key key = Key("rich-text");
-
-    setUp(() {
-      context = MockBuildContext();
-    });
 
     testWidgets("simple test", (tester) async {
       var block = AudioBlock(

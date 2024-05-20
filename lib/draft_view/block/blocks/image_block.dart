@@ -39,7 +39,7 @@ class ImageBlock extends BaseBlock {
     return WidgetSpan(
       child: ImageComponent(
         url: data['src'],
-        caption: data['description'],
+        bodySmall: data['description'],
       ),
     );
   }
@@ -47,9 +47,9 @@ class ImageBlock extends BaseBlock {
 
 class ImageComponent extends StatefulWidget {
   final String? url;
-  final String? caption;
+  final String? bodySmall;
 
-  ImageComponent({this.url, this.caption});
+  ImageComponent({this.url, this.bodySmall});
 
   @override
   _ImageComponentState createState() => _ImageComponentState();
@@ -66,7 +66,7 @@ class _ImageComponentState extends State<ImageComponent> {
               context: context,
               builder: (c) => ImageDetailView(
                 url: widget.url,
-                caption: widget.caption,
+                bodySmall: widget.bodySmall,
               ),
             );
           },
@@ -93,8 +93,8 @@ class _ImageComponentState extends State<ImageComponent> {
                 ),
         ),
         Hero(
-          tag: Key("${widget.caption}"),
-          child: Text("${widget.caption}"),
+          tag: Key("${widget.bodySmall}"),
+          child: Text("${widget.bodySmall}"),
         ),
       ],
     );
@@ -103,9 +103,9 @@ class _ImageComponentState extends State<ImageComponent> {
 
 class ImageDetailView extends StatefulWidget {
   final String? url;
-  final String? caption;
+  final String? bodySmall;
 
-  const ImageDetailView({Key? key, this.url, this.caption}) : super(key: key);
+  const ImageDetailView({Key? key, this.url, this.bodySmall}) : super(key: key);
 
   @override
   _ImageDetailViewState createState() => _ImageDetailViewState();
@@ -165,9 +165,9 @@ class _ImageDetailViewState extends State<ImageDetailView> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Hero(
-                  tag: Key("${widget.caption}"),
+                  tag: Key("${widget.bodySmall}"),
                   child: Text(
-                    "${widget.caption ?? ""}",
+                    "${widget.bodySmall ?? ""}",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),

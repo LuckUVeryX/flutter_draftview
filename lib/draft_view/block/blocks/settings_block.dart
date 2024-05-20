@@ -11,8 +11,6 @@ import 'package:flutter/material.dart';
 //     final postSettings = postSettingsFromJson(jsonString);
 //     final detailSettings = detailSettingsFromJson(jsonString);
 
-import 'dart:convert';
-
 /// Post Settings object
 class Settings {
   Settings({
@@ -39,9 +37,7 @@ class Settings {
       );
 
   Map<String, dynamic> toJson() => {
-        "settings": settings == null
-            ? null
-            : List<dynamic>.from(settings.map((x) => x.toJson())),
+        "settings": List<dynamic>.from(settings.map((x) => x.toJson())),
       };
 }
 
@@ -72,10 +68,9 @@ class _PostSettings {
       );
 
   Map<String, dynamic> toJson() => {
-        "detailSettings": detailSettings == null
-            ? null
-            : List<dynamic>.from(detailSettings.map((x) => x.toJson())),
-        "id": id == null ? null : id,
+        "detailSettings":
+            List<dynamic>.from(detailSettings.map((x) => x.toJson())),
+        "id": id,
       };
 }
 
@@ -108,8 +103,8 @@ class _DetailSettings {
           id: json['id']);
 
   Map<String, dynamic> toJson() => {
-        "description": description == null ? null : description,
-        "name": name == null ? null : name,
+        "description": description,
+        "name": name,
         "id": id,
       };
 }
