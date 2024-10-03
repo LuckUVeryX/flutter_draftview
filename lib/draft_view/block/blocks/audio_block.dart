@@ -1,5 +1,4 @@
 import 'package:draft_view/draft_view/block/base_block.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,8 +13,8 @@ extension on Duration {
       return "-${-this}";
     }
     String twoDigitHours = twoDigits(inHours);
-    String twoDigitMinutes = twoDigits(inMinutes.remainder(60) as int);
-    String twoDigitSeconds = twoDigits(inSeconds.remainder(60) as int);
+    String twoDigitMinutes = twoDigits(inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(inSeconds.remainder(60));
 
     return "$twoDigitHours:$twoDigitMinutes:$twoDigitSeconds";
   }
@@ -170,13 +169,15 @@ class _AudioComponentState extends State<AudioComponent> {
                   RichText(
                     text: TextSpan(
                         text: "Audio src: ",
-                        style: Theme.of(context).textTheme.caption,
+                        style: Theme.of(context).textTheme.bodySmall,
                         children: [
                           WidgetSpan(
                             child: InkWell(
                               onTap: () async {
-                                if (await canLaunch(widget.url)) {
-                                  await launch(widget.url);
+                                final uri = Uri.tryParse(widget.url);
+                                if (uri == null) return;
+                                if (await canLaunchUrl(uri)) {
+                                  await launchUrl(uri);
                                 }
                               },
                               child: Text(
@@ -185,7 +186,7 @@ class _AudioComponentState extends State<AudioComponent> {
                                 overflow: TextOverflow.clip,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .caption!
+                                    .bodySmall!
                                     .copyWith(
                                       color: Colors.blue,
                                       decoration: TextDecoration.underline,

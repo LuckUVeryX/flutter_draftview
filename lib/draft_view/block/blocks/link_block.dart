@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:draft_view/draft_view/block/base_block.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -130,8 +128,10 @@ class LinkCard extends StatelessWidget {
                     tooltip: "Open in browser",
                     icon: Icon(Icons.launch),
                     onPressed: () async {
-                      if (await canLaunch(link)) {
-                        await launch(link);
+                      final uri = Uri.tryParse(link);
+                      if (uri == null) return;
+                      if (await canLaunchUrl(uri)) {
+                        await canLaunchUrl(uri);
                       }
                     },
                   ),
